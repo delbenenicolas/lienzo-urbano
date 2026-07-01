@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIENZO URBANO — Estampados que suenan y se ven</title>
+<meta name="description" content="LIENZO URBANO: ropa estampada con arte y música urbana. Lanzamiento 30 de julio. Firmá el lienzo para recibir el aviso.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0E;
+    --canvas:#F3EFE6;
+    --pink:#FF3B69;
+    --yellow:#FFCF3F;
+    --cyan:#3FD1C6;
+    --muted:#8B8B94;
+    --muted-dark:#3A3A42;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--canvas);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,.display{
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:0.02em;
+    line-height:0.95;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,11,14,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(243,239,230,0.08);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;max-width:1100px;margin:0 auto;
+  }
+  .logo{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.4rem;letter-spacing:0.05em;
+  }
+  .logo span{color:var(--pink);}
+  .nav-cta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;
+    border:1px solid var(--canvas);
+    padding:9px 16px;border-radius:2px;
+    transition:background .2s,color .2s;
+    text-decoration:none;
+  }
+  .nav-cta:hover{background:var(--canvas);color:var(--ink);}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:110px 0 140px;
+    overflow:hidden;
+  }
+  .spray-stroke{
+    position:absolute;
+    top:8%;left:50%;
+    transform:translateX(-50%) rotate(-2deg);
+    width:min(1000px,140%);
+    z-index:0;
+    opacity:0.9;
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;z-index:1;text-align:center;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--yellow);margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(3.4rem,12vw,8.5rem);
+    color:var(--canvas);
+    text-shadow: 4px 4px 0 var(--pink);
+  }
+  .hero .sub{
+    font-size:clamp(1rem,2.4vw,1.3rem);
+    color:var(--canvas);
+    max-width:520px;margin:26px auto 0;
+    opacity:0.88;
+  }
+
+  /* countdown */
+  .countdown{
+    display:flex;justify-content:center;gap:14px;
+    margin:46px 0 40px;flex-wrap:wrap;
+  }
+  .count-box{
+    background:rgba(243,239,230,0.06);
+    border:1px solid rgba(243,239,230,0.16);
+    border-radius:4px;
+    padding:14px 18px;min-width:78px;
+    text-align:center;
+  }
+  .count-box .num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:1.9rem;font-weight:600;color:var(--cyan);
+    display:block;
+  }
+  .count-box .lbl{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* FORM */
+  .signup{
+    max-width:460px;margin:0 auto;
+  }
+  .signup form{
+    display:flex;gap:0;border:1px solid var(--canvas);border-radius:2px;overflow:hidden;
+  }
+  .signup input[type=email]{
+    flex:1;background:transparent;border:none;outline:none;
+    color:var(--canvas);padding:15px 16px;font-family:'Space Grotesk',sans-serif;
+    font-size:0.95rem;
+  }
+  .signup input[type=email]::placeholder{color:var(--muted);}
+  .signup button{
+    background:var(--pink);border:none;color:var(--ink);
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+    text-transform:uppercase;letter-spacing:0.06em;font-weight:600;
+    padding:0 20px;cursor:pointer;white-space:nowrap;
+    transition:background .2s;
+  }
+  .signup button:hover{background:var(--yellow);}
+  .form-note{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;color:var(--muted);
+    margin-top:12px;min-height:16px;
+  }
+  .form-note.ok{color:var(--cyan);}
+  .form-note.err{color:var(--pink);}
+
+  /* TORN EDGE DIVIDERS */
+  .torn{
+    position:relative;height:44px;
+    background:transparent;
+  }
+  .torn svg{position:absolute;bottom:-1px;left:0;width:100%;height:100%;display:block;}
+
+  /* MANIFESTO */
+  .manifesto{background:var(--canvas);color:var(--ink);padding:100px 0 110px;}
+  .manifesto .grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:start;
+  }
+  .manifesto h2{font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:22px;}
+  .manifesto p{font-size:1.05rem;line-height:1.6;color:var(--muted-dark);max-width:480px;}
+  .manifesto p + p{margin-top:16px;}
+  blockquote{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(1.6rem,3.4vw,2.2rem);
+    line-height:1.15;
+    border-left:4px solid var(--pink);
+    padding:6px 0 6px 24px;
+    transform:rotate(-1.2deg);
+  }
+  blockquote span{display:block;font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;color:var(--muted);margin-top:14px;text-transform:uppercase;font-weight:600;transform:none;}
+
+  /* PREVIEW */
+  .preview{background:var(--ink);padding:100px 0;}
+  .preview .head{text-align:center;margin-bottom:56px;}
+  .preview .head .eyebrow{color:var(--cyan);}
+  .preview h2{font-size:clamp(2.2rem,5vw,3.2rem);}
+  .cards{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+  }
+  .card{
+    border:1px solid rgba(243,239,230,0.14);
+    border-radius:4px;overflow:hidden;
+    transition:transform .25s;
+  }
+  .card:hover{transform:translateY(-6px);}
+  .swatch{
+    height:220px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Bebas Neue',sans-serif;font-size:1.1rem;
+    letter-spacing:0.05em;color:rgba(11,11,14,0.55);
+    position:relative;overflow:hidden;
+  }
+  .swatch::before{
+    content:'';position:absolute;inset:0;opacity:0.5;
+    background-image:repeating-linear-gradient(45deg, rgba(11,11,14,0.12) 0 2px, transparent 2px 14px);
+  }
+  .swatch.musica{background:var(--pink);}
+  .swatch.arte{background:var(--yellow);}
+  .swatch.calle{background:var(--cyan);}
+  .card-body{padding:20px 22px 24px;}
+  .card-body h3{
+    font-family:'Bebas Neue',sans-serif;font-size:1.3rem;margin-bottom:8px;letter-spacing:0.02em;
+  }
+  .card-body p{font-size:0.9rem;color:var(--muted);line-height:1.5;}
+
+  /* FINAL CTA */
+  .final-cta{background:var(--canvas);color:var(--ink);padding:110px 0 100px;text-align:center;}
+  .final-cta h2{font-size:clamp(2.4rem,6vw,4rem);margin-bottom:16px;}
+  .final-cta .sub{color:var(--muted-dark);max-width:460px;margin:0 auto 34px;}
+  .final-cta .signup form{border-color:var(--ink);}
+  .final-cta .signup input[type=email]{color:var(--ink);}
+  .final-cta .signup input[type=email]::placeholder{color:#9a958a;}
+  .final-cta .form-note{color:#7a756a;}
+
+  /* FOOTER */
+  footer{background:var(--ink);padding:44px 0 38px;border-top:1px solid rgba(243,239,230,0.08);}
+  footer .row{
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  footer .logo{font-size:1.1rem;}
+  .socials{display:flex;gap:18px;font-family:'JetBrains Mono',monospace;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;}
+  .socials a{text-decoration:none;color:var(--muted);transition:color .2s;}
+  .socials a:hover{color:var(--canvas);}
+  .fine{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);margin-top:22px;text-align:center;}
+
+  @media (max-width:760px){
+    .manifesto .grid{grid-template-columns:1fr;gap:36px;}
+    .cards{grid-template-columns:1fr;}
+    .signup form{flex-direction:column;border:none;gap:10px;}
+    .signup input[type=email]{border:1px solid var(--canvas);border-radius:2px;}
+    .final-cta .signup input[type=email]{border-color:var(--ink);}
+    .signup button{padding:14px;border-radius:2px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .card{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">LIENZO<span>·</span>URBANO</div>
+    <a href="#firmar" class="nav-cta">Firmar</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <svg class="spray-stroke" viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M40 130 C 120 40, 260 20, 380 70 C 470 105, 520 40, 640 55 C 720 65, 770 110, 760 150" stroke="#FF3B69" stroke-width="26" fill="none" stroke-linecap="round" opacity="0.5"/>
+    <path d="M60 160 C 160 190, 300 175, 420 150 C 520 130, 600 175, 720 160" stroke="#3FD1C6" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.35"/>
+  </svg>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Edición de lanzamiento — Montevideo</div>
+    <h1>LIENZO<br>URBANO</h1>
+    <p class="sub">Estampados que suenan y se ven. Ropa con arte urbano y música, hecha para llevarse puesta.</p>
+
+    <div class="countdown mono" id="countdown">
+      <div class="count-box"><span class="num" id="cd-d">00</span><span class="lbl">días</span></div>
+      <div class="count-box"><span class="num" id="cd-h">00</span><span class="lbl">hs</span></div>
+      <div class="count-box"><span class="num" id="cd-m">00</span><span class="lbl">min</span></div>
+      <div class="count-box"><span class="num" id="cd-s">00</span><span class="lbl">seg</span></div>
+    </div>
+
+    <div class="signup" id="firmar">
+      <form id="signup-form">
+        <input type="email" id="email-input" name="email" placeholder="tu@mail.com" required autocomplete="email">
+        <button type="submit">Firmar el lienzo</button>
+      </form>
+      <div class="form-note" id="form-note">Sin spam. Un mail el 30 de julio, cuando abrimos el lienzo.</div>
+    </div>
+  </div>
+</section>
+
+<div class="torn" style="background:var(--ink);">
+  <svg preserveAspectRatio="none" viewBox="0 0 1200 44"><path d="M0,0 L60,0 L90,30 L140,6 L190,34 L240,10 L300,28 L360,4 L420,30 L480,8 L540,32 L600,6 L660,28 L720,4 L780,30 L840,10 L900,26 L960,6 L1020,30 L1080,8 L1140,26 L1200,0 L1200,44 L0,44 Z" fill="#F3EFE6"/></svg>
+</div>
+
+<section class="manifesto">
+  <div class="wrap grid">
+    <div>
+      <h2>El lienzo es<br>la tela.</h2>
+      <p>Cada prenda es un corte de tela pensado como una pared o una portada: un espacio en blanco a la espera de un trazo. Tomamos escenas de la música y el arte urbano y las llevamos al estampado, sin filtros ni suavizados.</p>
+      <p>No hacemos ropa con estampados. Hacemos lienzos que se usan.</p>
+    </div>
+    <blockquote>"Lo que se pinta en la calle, ahora se lleva puesto."<span>Lienzo Urbano — manifiesto de lanzamiento</span></blockquote>
+  </div>
+</section>
+
+<div class="torn" style="background:var(--canvas);">
+  <svg preserveAspectRatio="none" viewBox="0 0 1200 44"><path d="M0,0 L60,0 L90,30 L140,6 L190,34 L240,10 L300,28 L360,4 L420,30 L480,8 L540,32 L600,6 L660,28 L720,4 L780,30 L840,10 L900,26 L960,6 L1020,30 L1080,8 L1140,26 L1200,0 L1200,44 L0,44 Z" fill="#0B0B0E"/></svg>
+</div>
+
+<section class="preview">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow mono">Vista previa</div>
+      <h2>Primeros trazos</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="swatch musica">MÚSICA</div>
+        <div class="card-body">
+          <h3>Serie Música</h3>
+          <p>Portadas, letras y siluetas de escenarios llevadas a la remera.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="swatch arte">ARTE</div>
+        <div class="card-body">
+          <h3>Serie Arte</h3>
+          <p>Piezas de arte urbano reinterpretadas como estampado textil.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="swatch calle">CALLE</div>
+        <div class="card-body">
+          <h3>Serie Calle</h3>
+          <p>Texturas de pared, stencil y spray, directo a la tela.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="torn" style="background:var(--canvas);">
+  <svg preserveAspectRatio="none" viewBox="0 0 1200 44"><path d="M0,0 L60,0 L90,30 L140,6 L190,34 L240,10 L300,28 L360,4 L420,30 L480,8 L540,32 L600,6 L660,28 L720,4 L780,30 L840,10 L900,26 L960,6 L1020,30 L1080,8 L1140,26 L1200,0 L1200,44 L0,44 Z" fill="#0B0B0E"/></svg>
+</div>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>30 de julio.<br>Guardá tu lugar.</h2>
+    <p class="sub">Firmá con tu mail y te avisamos apenas el lienzo esté colgado.</p>
+    <div class="signup">
+      <form id="signup-form-2">
+        <input type="email" id="email-input-2" name="email" placeholder="tu@mail.com" required autocomplete="email">
+        <button type="submit">Firmar el lienzo</button>
+      </form>
+      <div class="form-note" id="form-note-2">Sin spam. Un mail el 30 de julio, cuando abrimos el lienzo.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div class="logo">LIENZO<span style="color:var(--pink);">·</span>URBANO</div>
+      <div class="socials">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
+        <a href="mailto:hola@lienzourbano.uy">Contacto</a>
+      </div>
+    </div>
+    <div class="fine">© 2026 Lienzo Urbano. Estampados de música y arte, Montevideo.</div>
+  </div>
+</footer>
+
+<script>
+  // Countdown al 30 de julio de 2026, hora de Montevideo (UTC-3)
+  const target = new Date('2026-07-30T00:00:00-03:00').getTime();
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function tick(){
+    const now = Date.now();
+    let diff = target - now;
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById('cd-d').textContent = pad(d);
+    document.getElementById('cd-h').textContent = pad(h);
+    document.getElementById('cd-m').textContent = pad(m);
+    document.getElementById('cd-s').textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Envío de formulario (dos instancias del form comparten la misma lógica)
+  async function handleSignup(emailInputId, noteId, formEl){
+    const input = document.getElementById(emailInputId);
+    const note = document.getElementById(noteId);
+    const email = input.value.trim();
+
+    note.className = 'form-note';
+    note.textContent = 'Firmando...';
+
+    try{
+      const res = await fetch('api/submit.php', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+
+      if(data.ok){
+        note.textContent = data.duplicate
+          ? 'Ya estabas en la lista.'
+          : 'Quedaste firmado. Te escribimos el 30 de julio.';
+        note.classList.add('ok');
+        input.value = '';
+      } else {
+        note.textContent = data.message || 'Ese mail no es válido. Probá de nuevo.';
+        note.classList.add('err');
+      }
+    } catch(err){
+      note.textContent = 'No pudimos guardar tu firma. Intentá de nuevo.';
+      note.classList.add('err');
+    }
+  }
+
+  document.getElementById('signup-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    handleSignup('email-input','form-note', this);
+  });
+  document.getElementById('signup-form-2').addEventListener('submit', function(e){
+    e.preventDefault();
+    handleSignup('email-input-2','form-note-2', this);
+  });
+</script>
+
+</body>
+</html>
